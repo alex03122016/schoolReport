@@ -1,5 +1,5 @@
 import docx
-from schoolReport import getNamesGrades, coordinates, testDictionary
+from schoolReport import getNamesGrades, coordinates, testDictionary, writePupilDetailsToSchoolReport
 
 def writeSchoolReport(inputDocx):
     xlsxFile = "/home/alex/schoolReport/Notenliste-11-10-2021_04-02-21.xlsx"
@@ -47,4 +47,16 @@ def writeSchoolReport(inputDocx):
 if __name__ == "__main__":
 
     docxFile = "Z 420 - Notenzeugnis für Schülerinnen und Schüler mit dem Förderbedarf Lernen (01.21)-1.docx"
-    writeSchoolReport(docxFile)
+    #writeSchoolReport(docxFile)
+    xlsxFile = "/home/alex/schoolReport/Notenliste-11-10-2021_04-02-21.xlsx"
+    names, allGrades = testDictionary.testDictionary(xlsxFile)
+
+
+    for name in names:
+        print(name)
+        outputDocx = "output/"+name+"-saved-"+docxFile
+        savepath= outputDocx
+
+        writePupilDetailsToSchoolReport.writePupilDetailsToSchoolReport(inputDocx=savepath,
+                                                                        docxFile=docxFile,
+                                                                        nameOfPupil= name)

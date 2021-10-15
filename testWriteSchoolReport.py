@@ -55,10 +55,7 @@ def testWriteSchoolReport(inputDocx):
             #write to target
             targetCell.text = str(note)
 
-
         pupil += 1
-
-
 
         #save to target .docX
         doc.save(savepath)
