@@ -13,6 +13,8 @@ venv/
 
 #testfiles
 *.docx
+*.odt
+*.odt#
 *.docx#
 *.xlsx
 *.xlsx#
