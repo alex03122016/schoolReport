@@ -1,8 +1,15 @@
 import docx
-from schoolReport import getNamesGrades, coordinates, testDictionary
+from schoolReport import getNamesGrades, coordinates, testDictionary, writePupilDetailsToSchoolReport
 
 def testWriteSchoolReport(inputDocx):
-    xlsxFile = "/home/alex/schoolReport/Notenliste-11-10-2021_04-02-21.xlsx"
+    """ watch out: the exported file from lehrmeister has to be saved once in libreoffice
+    as xlsx file
+    else it will throw the following error:
+        TypeError: expected <class 'openpyxl.styles.fills.Fill'>
+    """
+    xlsxFile = "/home/alex/schoolReport/Notenliste-18-10-2021_08-34-50.xlsx"
+
+
     #names, allGrades = getNamesGrades.getNamesGrades(xlsxFile)
     names, allGrades = testDictionary.testDictionary(xlsxFile)
 
@@ -42,7 +49,16 @@ def testWriteSchoolReport(inputDocx):
                 targetCell.text = str(note)
 
         #get note from allGrades
-        note = allGrades["7a - Deu"]["Ø Mitarbeit"][pupil]
+        noteMitarbeit = allGrades["7a - Deu"]["Ø Mitarbeit"][pupil]
+        noteKurztest = allGrades["7a - Deu"]["Ø Kurztest"][pupil]
+        if noteMitarbeit != "x" and noteKurztest != "x":
+            note = (float(noteMitarbeit.replace(",", ".")) + float(noteKurztest.replace(",", "."))) /2
+        else:
+            if noteMitarbeit != "x":
+                note = noteMitarbeit
+            else:
+                note = "x"
+        print("note: ", note)
         targetCell = getCoordinates("Deu_m")
         if targetCell != None:
             #write to target
@@ -64,5 +80,21 @@ def testWriteSchoolReport(inputDocx):
 
 if __name__ == "__main__":
 
-    docxFile = "Z 420 - Notenzeugnis für Schülerinnen und Schüler mit dem Förderbedarf Lernen (01.21)-1.docx"
+    #docxFile = "Z 420 - Notenzeugnis für Schülerinnen und Schüler mit dem Förderbedarf Lernen (01.21)-1.docx"
+    #docxFile = "Zwischenbericht.docx"
+    docxFile = "Zwischenbericht1.docx"
+
+    xlsxFile = "/home/alex/schoolReport/Notenliste-18-10-2021_08-34-50.xlsx"
+
     testWriteSchoolReport(docxFile)
+    names, allGrades = testDictionary.testDictionary(xlsxFile)
+
+
+    for name in names:
+        print(name)
+        outputDocx = "output/"+name+"-saved-"+docxFile
+        savepath= outputDocx
+
+        writePupilDetailsToSchoolReport.writePupilDetailsToSchoolReport(inputDocx=savepath,
+                                                                        docxFile=docxFile,
+                                                                        nameOfPupil= name)

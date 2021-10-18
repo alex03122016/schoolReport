@@ -4,7 +4,8 @@ from openpyxl import Workbook
 from openpyxl.worksheet.table import Table, TableStyleInfo
 
 def testDictionary(xlsxFile):
-    """ test add activity and schooltests"""
+    """ test add activity and schooltests
+    change xlsXCoordinates if the xlsx File has changed structure"""
     names, allGrades = getNamesGrades.getNamesGrades(xlsxFile)
     if xlsxFile == None or xlsxFile == "":
         xlsxFile = "test.xlsx"
@@ -24,7 +25,8 @@ def testDictionary(xlsxFile):
         allGrades[wb.sheetnames[0]] [gradeName] = grades
         return allGrades
 
-    xlsXCoordinates = [ ("Ø Mitarbeit", 6),
+    xlsXCoordinates = [ ("Ø Mitarbeit", 5),
+                        ("Ø Kurztest", 4),
                         ("Ø Klausur", 3)]
     for i in range(len(xlsXCoordinates)):
         addGrade(xlsXCoordinates[i][0], xlsXCoordinates[i][1] )

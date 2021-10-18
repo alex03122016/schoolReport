@@ -23,10 +23,10 @@ def writePupilDetailsToSchoolReport(inputDocx,
     #paragraph 6, run 2
     run.text = nameOfPupil
 
-    paragraph = doc.paragraphs[8]
+    """paragraph = doc.paragraphs[8]
     run= paragraph.runs[2]
     #paragraph 6, run 2
-    run.text = Geburtsdatum
+    run.text = Geburtsdatum"""
 
     #save .docX
     doc.save(inputDocx)

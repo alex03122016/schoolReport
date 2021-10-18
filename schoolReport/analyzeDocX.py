@@ -33,7 +33,9 @@ def analyzeDocX(inputDocx):
         return
     def analyzeRun():
         """analyze run and print listnumber of run to docX and to cli"""
+        paragraph = doc.paragraphs[6]
         i=0
+
         for run in paragraph.runs:
             print(run.text, "run: ", i)
             run.text = "run"+str(i)
@@ -52,6 +54,9 @@ def analyzeDocX(inputDocx):
     doc = docx.Document(inputDocx)
 
     #analyzeTables()
+    #analyzeParagraphs()
+    analyzeRun()
+
     #save .docX
     doc.save(savepath)
     print("Was saved in", savepath)
@@ -61,7 +66,9 @@ def analyzeDocX(inputDocx):
 
 if __name__ == "__main__":
 
-    docxFile = "Z 420 - Notenzeugnis für Schülerinnen und Schüler mit dem Förderbedarf Lernen (01.21)-1.docx"
+    #docxFile = "Z 420 - Notenzeugnis für Schülerinnen und Schüler mit dem Förderbedarf Lernen (01.21)-1.docx"
+    docxFile = "Zwischenbericht.docx"
+
     inputDocx = os.path.join(os.path.expanduser('~'),"schoolReport", docxFile)
 
     analyzeDocX(inputDocx)
