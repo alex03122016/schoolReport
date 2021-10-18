@@ -29,10 +29,10 @@ def coordinates():
                       ["Mu",12, 24, 0],
                       ["7a - Sp", "Sp", 14, 24, 0],
                       ["7a - Wahlpflicht", "Wahlpflicht", 16, 24, 0],
-                      ["T_ins", 3, 0, 1],
-                      ["T_ue", 3, 1, 1],
-                      ["Stu", 3, 2, 1],
-                      ["Stu_ue", 3, 3, 1],
-                      ["v", 3, 4, 1],
+                      ["T_ins","T_ins", 3, 0, 1],
+                      ["T_ue","T_ue", 3, 1, 1],
+                      ["Stu","Stu", 3, 2, 1],
+                      ["Stu_ue","Stu_ue", 3, 3, 1],
+                      ["v","v", 3, 4, 1],
                       ]
     return coordinatesDocX
